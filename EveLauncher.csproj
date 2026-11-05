@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <AssemblyName>LinLauncher</AssemblyName>
+    <RootNamespace>EveLauncher</RootNamespace>
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>none</DebugType>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <Deterministic>true</Deterministic>
+    <!-- 只在 WinExe 正式版内嵌提权清单；控制台测试变体改用免提权但保留 DPI 感知的清单 -->
+    <ApplicationManifest Condition="'$(EmbedAdminManifest)'!='false'">app.manifest</ApplicationManifest>
+    <ApplicationManifest Condition="'$(EmbedAdminManifest)'=='false'">app.preview.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="src\*.cs" />
+    <!-- 选服窗背景图（可在 exe 同级放 bg.jpg / bg.png 覆盖） -->
+    <EmbeddedResource Include="assets\bg.jpg" LogicalName="EveLauncher.assets.bg.jpg" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+  </ItemGroup>
+</Project>

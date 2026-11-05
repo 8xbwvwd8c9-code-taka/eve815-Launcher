@@ -1,0 +1,13 @@
+/bin/
+/obj/
+/checks/
+*.ini
+*.log
+*.bak
+*.bak-*
+*.exe
+*.dll
+*.dat
+*.bin
+*.pak
+*.new
